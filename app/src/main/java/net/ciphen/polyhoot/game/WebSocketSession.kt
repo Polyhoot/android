@@ -2,16 +2,14 @@ package net.ciphen.polyhoot.game
 
 import android.util.Log
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
-import net.ciphen.polyhoot.game.event.GameEvent
 import net.ciphen.polyhoot.game.event.GameEventType
 import net.ciphen.polyhoot.patterns.observer.Observable
 import net.ciphen.polyhoot.patterns.observer.Observer
 import okhttp3.*
 
-class WebSocketSession() : Observable, WebSocketListener() {
+class WebSocketSession : Observable, WebSocketListener() {
     override val observers: MutableList<Observer> = mutableListOf()
     private val okHttpClient = OkHttpClient()
     private lateinit var webSocket: WebSocket
@@ -39,10 +37,6 @@ class WebSocketSession() : Observable, WebSocketListener() {
     override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
         super.onClosed(webSocket, code, reason)
         notifyObservers(Pair(GameEventType.NOT_CONNECTED, ""))
-    }
-
-    override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
-        super.onClosing(webSocket, code, reason)
     }
 
     override fun onMessage(webSocket: WebSocket, text: String) {

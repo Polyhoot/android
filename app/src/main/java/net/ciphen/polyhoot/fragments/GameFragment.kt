@@ -60,7 +60,7 @@ class GameFragment : Fragment(), Observer {
     }
 
     override fun update(session: Observable, message: Any?) {
-        Log.i("GameFragment", "Got update with message ${message}")
+        Log.i("GameFragment", "Got update with message $message")
         val pair = message as Pair<*, *>
         val event = pair.first as GameEventType
         var args = ""

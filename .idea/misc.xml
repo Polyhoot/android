@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1595" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1595" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2025" />
         <entry key="app/src/main/res/drawable/logo_main_sm.xml" value="0.1595" />
         <entry key="app/src/main/res/font/ptsans.xml" value="0.2953703703703704" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.10055724417426545" />
@@ -16,6 +17,7 @@
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.27760416666666665" />
         <entry key="app/src/main/res/layout/game_activity.xml" value="0.12916666666666668" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.2111111111111111" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2025" />
       </map>
     </option>
   </component>

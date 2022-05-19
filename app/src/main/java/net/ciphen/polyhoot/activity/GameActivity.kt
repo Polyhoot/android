@@ -2,7 +2,6 @@ package net.ciphen.polyhoot.activity
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.add
@@ -11,10 +10,6 @@ import net.ciphen.polyhoot.R
 import net.ciphen.polyhoot.databinding.GameActivityBinding
 import net.ciphen.polyhoot.fragments.JoinGameFragment
 import net.ciphen.polyhoot.game.WebSocketSession
-import net.ciphen.polyhoot.game.event.GameEvent
-import net.ciphen.polyhoot.game.event.GameEventType
-import net.ciphen.polyhoot.patterns.observer.Observable
-import net.ciphen.polyhoot.patterns.observer.Observer
 
 class GameActivity: AppCompatActivity() {
     companion object {
