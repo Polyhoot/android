@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.android.material.card.MaterialCardView
 import kotlinx.serialization.json.*
 import net.ciphen.polyhoot.R
@@ -81,7 +80,6 @@ class GameFragment : Fragment(), Observer {
                     binding.gameStatusText.visibility = View.GONE
                     binding.choicesLayout.visibility = View.VISIBLE
                     binding.waitingCircle.visibility = View.GONE
-                    Toast.makeText(this.context, "Choose your answer!", Toast.LENGTH_SHORT).show()
                     timer = timer(duration)
                     timer!!.start()
                     answerBindings.forEachIndexed { index, materialCardView ->
