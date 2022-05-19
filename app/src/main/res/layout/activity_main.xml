@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.MainActivity">
+    <ImageView
+        android:id="@+id/polytech_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:scaleType="fitXY"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:src="@drawable/logo_main_sm"
+        app:layout_constraintEnd_toStartOf="@+id/polyhoot_logo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/polyhoot_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Polyhoot!"
+        android:textColor="?attr/colorSecondary"
+        android:textSize="54sp"
+        app:layout_constraintBottom_toBottomOf="@+id/polytech_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/polytech_logo"
+        app:layout_constraintTop_toTopOf="@+id/polytech_logo" />
+
+    <TextView
+        android:id="@+id/game_uid_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter game UID"
+        android:textColor="?attr/colorAccent"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/game_uid_field_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/game_uid_field_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:errorEnabled="false"
+        app:errorContentDescription="Bruh"
+        app:boxStrokeErrorColor="?attr/colorError"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/game_uid_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/game_uid_field"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:autoSizeTextType="uniform"
+            android:maxLength="6"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/game_uid_enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:stateListAnimator="@null"
+        android:text="Play"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_uid_field_layout"
+        app:icon="@android:drawable/ic_media_play" />
+
+    <Button
+        android:id="@+id/button_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/polytech_logo" />
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

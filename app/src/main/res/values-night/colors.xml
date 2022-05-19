@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="answer_1_card_background">#65499c</color>
+    <color name="answer_2_card_background">#c8a415</color>
+    <color name="answer_3_card_background">#009faf</color>
+    <color name="answer_4_card_background">#519657</color>
+</resources>

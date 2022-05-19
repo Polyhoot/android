@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="answer_1_card_background">#c7a4ff</color>
+    <color name="answer_1_card_text_color">#9575cd</color>
+    <color name="answer_2_card_background">#ffff81</color>
+    <color name="answer_2_card_text_color">#ffd54f</color>
+    <color name="answer_3_card_background">#88ffff</color>
+    <color name="answer_3_card_text_color">#4dd0e1</color>
+    <color name="answer_4_card_background">#b2fab4</color>
+    <color name="answer_4_card_text_color">#81c784</color>
+</resources>
