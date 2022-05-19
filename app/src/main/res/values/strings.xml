@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Polyhoot!</string>
+    <string name="play_button_text">Play</string>
+    <string name="game_uid_text">Enter game ID</string>
+    <string name="starting_game">Starting game!</string>
+    <string name="join_game">Join game</string>
+    <string name="answer_sent">Answer sent! Waiting for others…</string>
+    <string name="time_up_text">Looking through the answers…</string>
+    <string name="force_stop">Host has disconnected.\nGame has ended forcibly.</string>
+    <string name="game_ended">Game has ended.</string>
+    <string name="get_ready">Get ready to answer!</string>
+    <string name="game_id">Game ID: %1$d</string>
+    <string name="status">Status: %1$s</string>
+    <string name="game_id_error_text">Check UID!</string>
+    <string name="name_text">Enter your name</string>
 </resources>

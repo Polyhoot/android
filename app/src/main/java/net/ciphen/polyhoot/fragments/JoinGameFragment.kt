@@ -36,7 +36,7 @@ class JoinGameFragment : Fragment(), Observer {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.statusText.text = "Status: not connected"
+        binding.statusText.text = getString(R.string.status, "NOT CONNECTED")
         binding.gameJoin.setOnClickListener {
             webSocketSession.sendMessage(
                 "{\"event\":\"connect\",\"name\":\"${binding.nameField.text}\",\"gameId\":$gameId}"
@@ -72,10 +72,10 @@ class JoinGameFragment : Fragment(), Observer {
             }
             val session = session as WebSocketSession
             when (event) {
-                GameEventType.CONNECTED -> binding.statusText.text = "Status: connected!"
-                GameEventType.CONNECTING -> binding.statusText.text = "Status: connecting..."
-                GameEventType.DEBUG_MESSAGE -> binding.statusText.text = "Status:" + args
-                GameEventType.FAIL -> binding.statusText.text = "Status: FAIL! $args"
+                GameEventType.CONNECTED -> binding.statusText.text = getString(R.string.status, "CONNECTED")
+                GameEventType.CONNECTING -> binding.statusText.text = getString(R.string.status, "CONNECTING...")
+                GameEventType.DEBUG_MESSAGE -> binding.statusText.text = getString(R.string.status, args)
+                GameEventType.FAIL -> binding.statusText.text = getString(R.string.status,"FAIL! $args")
                 GameEventType.STATUS -> {
                     requireActivity().supportFragmentManager.commit {
                         setReorderingAllowed(true)
@@ -87,9 +87,9 @@ class JoinGameFragment : Fragment(), Observer {
                     binding.nameFieldLayout.visibility = View.VISIBLE
                     binding.nameFieldLayout.isErrorEnabled = true
                     binding.nameFieldLayout.error = "Name taken!"
-                    binding.statusText.text = "Status: Name taken!"
+                    binding.statusText.text = getString(R.string.status, "NAME TAKEN")
                 }
-                else -> binding.statusText.text = "Status: Unknown"
+                else -> binding.statusText.text = getString(R.string.status, "UNKNOWN")
             }
         }
     }

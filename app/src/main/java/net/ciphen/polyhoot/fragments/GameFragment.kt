@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.material.card.MaterialCardView
 import kotlinx.serialization.json.*
+import net.ciphen.polyhoot.R
 import net.ciphen.polyhoot.activity.GameActivity
 import net.ciphen.polyhoot.databinding.FragmentGameBinding
 import net.ciphen.polyhoot.game.event.GameEventType
@@ -35,7 +36,7 @@ class GameFragment : Fragment(), Observer {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.nameText.text = name
-        binding.gameIdText.text = "Game ID: $gameId"
+        binding.gameIdText.text = getString(R.string.game_id, gameId)
         answerBindings.add(binding.answer1)
         answerBindings.add(binding.answer2)
         answerBindings.add(binding.answer3)
@@ -71,7 +72,7 @@ class GameFragment : Fragment(), Observer {
         requireActivity().runOnUiThread {
             when (event) {
                 GameEventType.START_GAME -> {
-                    binding.gameStatusText.text = "Starting game...!"
+                    binding.gameStatusText.text = getString(R.string.starting_game)
                 }
                 GameEventType.QUESTION -> {
                     answered = false
@@ -98,7 +99,7 @@ class GameFragment : Fragment(), Observer {
                                     )
                                 ).toString()
                             )
-                            binding.gameStatusText.text = "Answer sent! Waiting for others..."
+                            binding.gameStatusText.text = getString(R.string.answer_sent)
                             answered = true
                             binding.gameStatusText.visibility = View.VISIBLE
                             binding.choicesLayout.visibility = View.GONE
@@ -111,7 +112,7 @@ class GameFragment : Fragment(), Observer {
                         timer!!.interrupt()
                     }
                     answered = true
-                    binding.gameStatusText.text = "Looking through the answers..."
+                    binding.gameStatusText.text = getString(R.string.time_up_text)
                     binding.choicesLayout.visibility = View.GONE
                     binding.gameStatusText.visibility = View.VISIBLE
                     binding.waitingCircle.visibility = View.VISIBLE
@@ -120,19 +121,19 @@ class GameFragment : Fragment(), Observer {
                     binding.choicesLayout.visibility = View.GONE
                     binding.waitingCircle.visibility = View.GONE
                     binding.gameStatusText.visibility = View.VISIBLE
-                    binding.gameStatusText.text = "Host has disconnected.\nGame has ended forcibly."
+                    binding.gameStatusText.text = getString(R.string.force_stop)
                 }
                 GameEventType.END -> {
                     binding.choicesLayout.visibility = View.GONE
                     binding.waitingCircle.visibility = View.GONE
                     binding.gameStatusText.visibility = View.VISIBLE
-                    binding.gameStatusText.text = "Game has ended."
+                    binding.gameStatusText.text = getString(R.string.game_ended)
                 }
                 GameEventType.GET_READY -> {
                     binding.choicesLayout.visibility = View.GONE
                     binding.waitingCircle.visibility = View.VISIBLE
                     binding.gameStatusText.visibility = View.VISIBLE
-                    binding.gameStatusText.text = "Get ready to answer!"
+                    binding.gameStatusText.text = getString(R.string.get_ready)
                 }
             }
         }

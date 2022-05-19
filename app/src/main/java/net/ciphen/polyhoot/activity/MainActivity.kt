@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import net.ciphen.polyhoot.R
 import net.ciphen.polyhoot.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.gameUidEnter.setOnClickListener {
             if (binding.gameUidField.text!!.length != 6) {
-                binding.gameUidFieldLayout.error = "Check UID!"
+                binding.gameUidFieldLayout.error = getString(R.string.game_id_error_text)
                 binding.gameUidFieldLayout.isErrorEnabled = true
             } else {
                 binding.gameUidFieldLayout.isErrorEnabled = false
