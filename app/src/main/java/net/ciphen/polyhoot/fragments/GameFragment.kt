@@ -9,12 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.material.card.MaterialCardView
 import kotlinx.serialization.json.*
-import net.ciphen.polyhoot.R
 import net.ciphen.polyhoot.activity.GameActivity
 import net.ciphen.polyhoot.databinding.FragmentGameBinding
-import net.ciphen.polyhoot.databinding.FragmentJoinGameBinding
-import net.ciphen.polyhoot.game.WebSocketSession
-import net.ciphen.polyhoot.game.event.GameEvent
 import net.ciphen.polyhoot.game.event.GameEventType
 import net.ciphen.polyhoot.patterns.observer.Observable
 import net.ciphen.polyhoot.patterns.observer.Observer
@@ -71,7 +67,7 @@ class GameFragment : Fragment(), Observer {
         if (pair.second != null) {
             args = pair.second as String
         }
-        var timer: Thread? = null
+        var timer: Thread? = timer(10)
         requireActivity().runOnUiThread {
             when (event) {
                 GameEventType.START_GAME -> {
@@ -85,7 +81,8 @@ class GameFragment : Fragment(), Observer {
                     binding.choicesLayout.visibility = View.VISIBLE
                     binding.waitingCircle.visibility = View.GONE
                     Toast.makeText(this.context, "Choose your answer!", Toast.LENGTH_SHORT).show()
-                    timer = timer(duration).also { it.start() }
+                    timer = timer(duration)
+                    timer!!.start()
                     answerBindings.forEachIndexed { index, materialCardView ->
                         materialCardView.setOnClickListener {
                             val answerTime = System.currentTimeMillis()
@@ -153,5 +150,6 @@ class GameFragment : Fragment(), Observer {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        webSocketSession.removeObserver(this)
     }
 }
