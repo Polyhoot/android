@@ -6,13 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.GameFragment">
 
-    <TextView
-        android:id="@+id/debug_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:alpha="0.7"
-        android:textSize="14sp" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/game_layout"
         android:layout_width="match_parent"
