@@ -53,7 +53,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:errorEnabled="false"
-        app:errorContentDescription="Bruh"
         app:boxStrokeErrorColor="?attr/colorError"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
