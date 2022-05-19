@@ -18,8 +18,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/name_field_layout"
+        app:layout_constraintBottom_toTopOf="@id/name_text"
         />
+
+    <TextView
+        android:id="@+id/name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name_text"
+        android:textColor="?attr/colorAccent"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/name_field_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/name_field_layout"
@@ -27,19 +40,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:errorEnabled="false"
-        app:errorContentDescription="Bruh"
         app:boxStrokeErrorColor="?attr/colorError"
-        app:layout_constraintBottom_toBottomOf="@id/game_join"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/status_text">
+        app:layout_constraintTop_toBottomOf="@id/name_text">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/name_field"
-            android:layout_width="160dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:text=""
             android:autoSizeTextType="uniform"
             android:maxLines="1"
             android:textAlignment="center"
@@ -59,22 +70,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name_field_layout"
         app:icon="@android:drawable/ic_media_play" />
-
-    <!--
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-    -->
-
-    <!--
-    <include layout="@layout/content_main" />
-    -->
 </androidx.constraintlayout.widget.ConstraintLayout>

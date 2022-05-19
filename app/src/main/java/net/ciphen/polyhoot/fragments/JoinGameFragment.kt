@@ -44,6 +44,7 @@ class JoinGameFragment : Fragment(), Observer {
             name = binding.nameField.text.toString()
             binding.gameJoin.visibility = View.GONE
             binding.nameFieldLayout.visibility = View.GONE
+            binding.nameText.visibility = View.GONE
         }
     }
 
