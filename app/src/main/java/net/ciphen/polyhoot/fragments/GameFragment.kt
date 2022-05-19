@@ -42,23 +42,6 @@ class GameFragment : Fragment(), Observer {
         answerBindings.add(binding.answer4)
     }
 
-    private fun timer(duration: Int): Thread {
-        class Timer: Observable, Runnable {
-            override val observers = mutableListOf<Observer>()
-
-            override fun run() {
-                Thread.sleep(duration * 1000L)
-                observers.forEach {
-                    notifyObservers(Pair(GameEventType.TIME_UP, ""))
-                    removeObserver(it)
-                }
-            }
-        }
-        val timer = Timer()
-        timer.addObserver(this)
-        return Thread(timer)
-    }
-
     override fun update(session: Observable, message: Any?) {
         Log.i("GameFragment", "Got update with message $message")
         val pair = message as Pair<*, *>
@@ -67,7 +50,6 @@ class GameFragment : Fragment(), Observer {
         if (pair.second != null) {
             args = pair.second as String
         }
-        var timer: Thread? = timer(10)
         requireActivity().runOnUiThread {
             when (event) {
                 GameEventType.START_GAME -> {
@@ -80,8 +62,6 @@ class GameFragment : Fragment(), Observer {
                     binding.gameStatusText.visibility = View.GONE
                     binding.choicesLayout.visibility = View.VISIBLE
                     binding.waitingCircle.visibility = View.GONE
-                    timer = timer(duration)
-                    timer!!.start()
                     answerBindings.forEachIndexed { index, materialCardView ->
                         materialCardView.setOnClickListener {
                             val answerTime = System.currentTimeMillis()
@@ -106,9 +86,6 @@ class GameFragment : Fragment(), Observer {
                     }
                 }
                 GameEventType.TIME_UP -> {
-                    if (timer!!.isAlive) {
-                        timer!!.interrupt()
-                    }
                     answered = true
                     binding.gameStatusText.text = getString(R.string.time_up_text)
                     binding.choicesLayout.visibility = View.GONE
