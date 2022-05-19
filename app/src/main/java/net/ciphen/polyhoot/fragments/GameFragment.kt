@@ -71,6 +71,7 @@ class GameFragment : Fragment(), Observer {
         if (pair.second != null) {
             args = pair.second as String
         }
+        var timer: Thread? = null
         requireActivity().runOnUiThread {
             when (event) {
                 GameEventType.START_GAME -> {
@@ -84,7 +85,7 @@ class GameFragment : Fragment(), Observer {
                     binding.choicesLayout.visibility = View.VISIBLE
                     binding.waitingCircle.visibility = View.GONE
                     Toast.makeText(this.context, "Choose your answer!", Toast.LENGTH_SHORT).show()
-                    timer(duration).start()
+                    timer = timer(duration).also { it.start() }
                     answerBindings.forEachIndexed { index, materialCardView ->
                         materialCardView.setOnClickListener {
                             val answerTime = System.currentTimeMillis()
@@ -109,6 +110,9 @@ class GameFragment : Fragment(), Observer {
                     }
                 }
                 GameEventType.TIME_UP -> {
+                    if (timer!!.isAlive) {
+                        timer!!.interrupt()
+                    }
                     answered = true
                     binding.gameStatusText.text = "Looking through the answers..."
                     binding.choicesLayout.visibility = View.GONE
