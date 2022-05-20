@@ -2,15 +2,15 @@ package net.ciphen.polyhoot.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.google.android.material.card.MaterialCardView
 import kotlinx.serialization.json.*
 import net.ciphen.polyhoot.R
-import net.ciphen.polyhoot.activity.GameActivity
 import net.ciphen.polyhoot.databinding.FragmentGameBinding
+import net.ciphen.polyhoot.game.WebSocketSession
 import net.ciphen.polyhoot.game.event.GameEventType
 import net.ciphen.polyhoot.patterns.observer.Observable
 import net.ciphen.polyhoot.patterns.observer.Observer
@@ -21,7 +21,7 @@ class GameFragment : Fragment(), Observer {
     private val binding get() = _binding!!
     private var gameId by Delegates.notNull<Int>()
     private var name by Delegates.notNull<String>()
-    private val webSocketSession = GameActivity.getInstance().webSocketSession
+    private val webSocketSession = WebSocketSession.getInstance()
     private var answerBindings: MutableList<MaterialCardView> = mutableListOf()
     private var answered: Boolean = false
 

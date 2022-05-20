@@ -12,26 +12,14 @@ import net.ciphen.polyhoot.fragments.JoinGameFragment
 import net.ciphen.polyhoot.game.WebSocketSession
 
 class GameActivity: AppCompatActivity() {
-    companion object {
-        private var INSTANCE: GameActivity? = null
-
-        fun getInstance(): GameActivity {
-            if (INSTANCE == null) {
-                throw IllegalStateException("Called getInstance on activity that wasn't created yet!")
-            } else {
-                return INSTANCE!!
-            }
-        }
-    }
     private lateinit var binding: GameActivityBinding
-    lateinit var webSocketSession: WebSocketSession
+    private lateinit var webSocketSession: WebSocketSession
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        INSTANCE = this
         binding = GameActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        webSocketSession = WebSocketSession()
+        webSocketSession = WebSocketSession.getInstance()
         webSocketSession.openWebSocket()
         Log.i("GameActivity", "Opened WebSocket.")
         supportFragmentManager.commit {

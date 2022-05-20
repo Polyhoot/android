@@ -16,6 +16,11 @@ class WebSocketSession : Observable, WebSocketListener() {
 
     companion object {
         const val WS_URL = "wss://polyhoot.ciphen.net/game/session"
+        private var INSTANCE: WebSocketSession? = null
+
+        fun getInstance(): WebSocketSession {
+            return INSTANCE ?: WebSocketSession().also { INSTANCE = it }
+        }
     }
 
     fun openWebSocket() {

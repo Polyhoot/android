@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import net.ciphen.polyhoot.R
-import net.ciphen.polyhoot.activity.GameActivity
 import net.ciphen.polyhoot.databinding.FragmentJoinGameBinding
 import net.ciphen.polyhoot.game.WebSocketSession
 import net.ciphen.polyhoot.game.event.GameEventType
@@ -21,7 +20,7 @@ import kotlin.properties.Delegates
 class JoinGameFragment : Fragment(), Observer {
     private var _binding: FragmentJoinGameBinding? = null
     private val binding get() = _binding!!
-    private var webSocketSession = GameActivity.getInstance().webSocketSession
+    private var webSocketSession = WebSocketSession.getInstance()
     private var gameId by Delegates.notNull<Int>()
     private var name by Delegates.notNull<String>()
 
@@ -70,7 +69,6 @@ class JoinGameFragment : Fragment(), Observer {
             if (pair.second != null) {
                 args = pair.second as String
             }
-            val session = session as WebSocketSession
             when (event) {
                 GameEventType.CONNECTED -> binding.statusText.text = getString(R.string.status, "CONNECTED")
                 GameEventType.CONNECTING -> binding.statusText.text = getString(R.string.status, "CONNECTING...")
