@@ -36,13 +36,18 @@ class JoinGameFragment : Fragment(), Observer {
         super.onViewCreated(view, savedInstanceState)
         binding.statusText.text = getString(R.string.status, "NOT CONNECTED")
         binding.gameJoin.setOnClickListener {
-            webSocketSession.sendMessage(
-                "{\"event\":\"connect\",\"name\":\"${binding.nameField.text}\",\"gameId\":$gameId}"
-            )
-            name = binding.nameField.text.toString()
-            binding.gameJoin.visibility = View.GONE
-            binding.nameFieldLayout.visibility = View.GONE
-            binding.nameText.visibility = View.GONE
+            if (binding.nameField.text.toString().isEmpty()) {
+                binding.nameFieldLayout.isErrorEnabled = true
+                binding.nameFieldLayout.error = getString(R.string.name_field_empty)
+            } else {
+                webSocketSession.sendMessage(
+                    "{\"event\":\"connect\",\"name\":\"${binding.nameField.text}\",\"gameId\":$gameId}"
+                )
+                name = binding.nameField.text.toString()
+                binding.gameJoin.visibility = View.GONE
+                binding.nameFieldLayout.visibility = View.GONE
+                binding.nameText.visibility = View.GONE
+            }
         }
     }
 

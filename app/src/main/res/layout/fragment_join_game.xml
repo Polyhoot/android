@@ -39,7 +39,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:minWidth="160dp"
         app:errorEnabled="false"
+        android:hint="@string/name_field_layout_hint"
+        app:hintEnabled="true"
+        app:hintAnimationEnabled="true"
         app:boxStrokeErrorColor="?attr/colorError"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -51,9 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:autoSizeTextType="uniform"
             android:maxLines="1"
-            android:textAlignment="center"
             android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
 

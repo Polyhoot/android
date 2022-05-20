@@ -14,4 +14,7 @@
     <string name="game_id_error_text">Check UID!</string>
     <string name="name_text">Enter your name</string>
     <string name="websocket_url">wss://polyhoot.ciphen.net/game/session</string>
+    <string name="name_field_layout_hint">Name</string>
+    <string name="game_id_field_hint">Game ID</string>
+    <string name="name_field_empty">Can't be empty!</string>
 </resources>
