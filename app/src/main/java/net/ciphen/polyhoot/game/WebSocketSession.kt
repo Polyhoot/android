@@ -15,18 +15,15 @@ class WebSocketSession : Observable, WebSocketListener() {
     private lateinit var webSocket: WebSocket
 
     companion object {
-        const val WS_URL = "wss://polyhoot.ciphen.net/game/session"
         private var INSTANCE: WebSocketSession? = null
 
-        fun getInstance(): WebSocketSession {
-            return INSTANCE ?: WebSocketSession().also { INSTANCE = it }
-        }
+        fun getInstance(): WebSocketSession = INSTANCE ?: WebSocketSession().also { INSTANCE = it }
     }
 
-    fun openWebSocket() {
+    fun openWebSocket(url: String) {
         notifyObservers(Pair(GameEventType.CONNECTING, ""))
         webSocket = okHttpClient.newWebSocket(
-            Request.Builder().url(WS_URL).build(),
+            Request.Builder().url(url).build(),
             this
         )
     }
