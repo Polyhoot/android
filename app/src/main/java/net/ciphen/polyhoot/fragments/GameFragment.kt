@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import com.google.android.material.card.MaterialCardView
 import kotlinx.serialization.json.*
@@ -34,6 +35,7 @@ class GameFragment : Fragment(), Observer {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        keepScreenOn(true)
         binding.nameText.text = name
         binding.gameIdText.text = getString(R.string.game_id, gameId)
         answerBindings.add(binding.answer1)
@@ -93,12 +95,14 @@ class GameFragment : Fragment(), Observer {
                     binding.waitingCircle.visibility = View.VISIBLE
                 }
                 GameEventType.FORCE_STOP -> {
+                    keepScreenOn(false)
                     binding.choicesLayout.visibility = View.GONE
                     binding.waitingCircle.visibility = View.GONE
                     binding.gameStatusText.visibility = View.VISIBLE
                     binding.gameStatusText.text = getString(R.string.force_stop)
                 }
                 GameEventType.END -> {
+                    keepScreenOn(false)
                     binding.choicesLayout.visibility = View.GONE
                     binding.waitingCircle.visibility = View.GONE
                     binding.gameStatusText.visibility = View.VISIBLE
@@ -127,5 +131,14 @@ class GameFragment : Fragment(), Observer {
         super.onDestroyView()
         _binding = null
         webSocketSession.removeObserver(this)
+        keepScreenOn(false)
+    }
+
+    fun keepScreenOn(keep: Boolean) {
+        if (keep) {
+            requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        } else {
+            requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        }
     }
 }
