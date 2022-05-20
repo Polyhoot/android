@@ -105,6 +105,16 @@ class GameFragment : Fragment(), Observer {
                         .jsonObject["duration"]
                         ?.jsonPrimitive
                         ?.int ?: DEFAULT_DURATION
+                    val text = Json.parseToJsonElement(args)
+                        .jsonObject["text"]
+                        ?.jsonPrimitive
+                        ?.content ?: ""
+                    if (text != "") {
+                        binding.questionText.text = text
+                        binding.questionText.visibility = View.VISIBLE
+                    } else {
+                        binding.questionText.visibility = View.GONE
+                    }
                     choicesUi(true)
                     progressCircle(false)
                     answerBindings.forEachIndexed { index, materialCardView ->
