@@ -106,6 +106,7 @@ class GameFragment : Fragment(), Observer {
                         ?.jsonPrimitive
                         ?.int ?: DEFAULT_DURATION
                     choicesUi(true)
+                    progressCircle(false)
                     answerBindings.forEachIndexed { index, materialCardView ->
                         materialCardView.setOnClickListener {
                             val answerTime = System.currentTimeMillis()
