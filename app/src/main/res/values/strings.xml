@@ -32,5 +32,5 @@
     <string name="websocket_url">wss://polyhoot.ciphen.net/game/session</string>
     <string name="name_field_layout_hint">Name</string>
     <string name="game_id_field_hint">Game ID</string>
-    <string name="name_field_empty">Can't be empty!</string>
+    <string name="name_field_empty">Can\'t be empty!</string>
 </resources>
