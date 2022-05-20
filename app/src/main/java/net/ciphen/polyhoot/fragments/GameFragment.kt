@@ -8,7 +8,12 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import com.google.android.material.card.MaterialCardView
-import kotlinx.serialization.json.*
+import kotlinx.serialization.json.int
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.JsonPrimitive
 import net.ciphen.polyhoot.R
 import net.ciphen.polyhoot.databinding.FragmentGameBinding
 import net.ciphen.polyhoot.game.WebSocketSession
@@ -16,6 +21,9 @@ import net.ciphen.polyhoot.game.event.GameEventType
 import net.ciphen.polyhoot.patterns.observer.Observable
 import net.ciphen.polyhoot.patterns.observer.Observer
 import kotlin.properties.Delegates
+
+private const val DEFAULT_DURATION = 10
+private const val MAX_SCORE = 1000
 
 class GameFragment : Fragment(), Observer {
     private var _binding: FragmentGameBinding? = null
@@ -44,6 +52,22 @@ class GameFragment : Fragment(), Observer {
         answerBindings.add(binding.answer4)
     }
 
+    private fun sendAnswer(answer: Int, score: Int) {
+        webSocketSession.sendMessage(
+            JsonObject(
+                mapOf(
+                    Pair("event", JsonPrimitive("answer")),
+                    Pair("answer", JsonPrimitive(answer)),
+                    Pair("score", JsonPrimitive(score.toInt()))
+                )
+            ).toString()
+        )
+        binding.gameStatusText.text = getString(R.string.answer_sent)
+        answered = true
+        choicesUi(false)
+        progressCircle(true)
+    }
+
     override fun update(session: Observable, message: Any?) {
         Log.i("GameFragment", "Got update with message $message")
         val pair = message as Pair<*, *>
@@ -60,61 +84,63 @@ class GameFragment : Fragment(), Observer {
                 GameEventType.QUESTION -> {
                     answered = false
                     val startTime = System.currentTimeMillis()
-                    val duration = Json.parseToJsonElement(args).jsonObject["duration"]?.jsonPrimitive?.int ?: 10
-                    binding.gameStatusText.visibility = View.GONE
-                    binding.choicesLayout.visibility = View.VISIBLE
-                    binding.waitingCircle.visibility = View.GONE
+                    val duration = Json
+                        .parseToJsonElement(args)
+                        .jsonObject["duration"]
+                        ?.jsonPrimitive
+                        ?.int ?: DEFAULT_DURATION
+                    choicesUi(true)
                     answerBindings.forEachIndexed { index, materialCardView ->
                         materialCardView.setOnClickListener {
                             val answerTime = System.currentTimeMillis()
                             val timeElapsed = answerTime - startTime
-                            val score = 1000.0 - (timeElapsed / (duration * 1000.0)) * 1000.0
-                            Log.i("GameFragment", "startTime: $startTime, answerTime: $answerTime, timeElapsed: $timeElapsed, score: $score")
-                            webSocketSession.sendMessage(
-                                JsonObject(
-                                    mapOf(
-                                        Pair("event", JsonPrimitive("answer")),
-                                        Pair("answer", JsonPrimitive(index)),
-                                        Pair("score", JsonPrimitive(score.toInt()))
-                                    )
-                                ).toString()
-                            )
-                            binding.gameStatusText.text = getString(R.string.answer_sent)
-                            answered = true
-                            binding.gameStatusText.visibility = View.VISIBLE
-                            binding.choicesLayout.visibility = View.GONE
-                            binding.waitingCircle.visibility = View.VISIBLE
+                            val score = MAX_SCORE - (timeElapsed / duration)
+                            sendAnswer(index, score.toInt())
                         }
                     }
                 }
                 GameEventType.TIME_UP -> {
                     answered = true
                     binding.gameStatusText.text = getString(R.string.time_up_text)
-                    binding.choicesLayout.visibility = View.GONE
-                    binding.gameStatusText.visibility = View.VISIBLE
-                    binding.waitingCircle.visibility = View.VISIBLE
+                    choicesUi(false)
+                    progressCircle(true)
                 }
                 GameEventType.FORCE_STOP -> {
                     keepScreenOn(false)
-                    binding.choicesLayout.visibility = View.GONE
-                    binding.waitingCircle.visibility = View.GONE
-                    binding.gameStatusText.visibility = View.VISIBLE
+                    choicesUi(false)
+                    progressCircle(false)
                     binding.gameStatusText.text = getString(R.string.force_stop)
                 }
                 GameEventType.END -> {
                     keepScreenOn(false)
-                    binding.choicesLayout.visibility = View.GONE
-                    binding.waitingCircle.visibility = View.GONE
-                    binding.gameStatusText.visibility = View.VISIBLE
+                    choicesUi(false)
+                    progressCircle(false)
                     binding.gameStatusText.text = getString(R.string.game_ended)
                 }
                 GameEventType.GET_READY -> {
-                    binding.choicesLayout.visibility = View.GONE
-                    binding.waitingCircle.visibility = View.VISIBLE
-                    binding.gameStatusText.visibility = View.VISIBLE
+                    choicesUi(false)
+                    progressCircle(true)
                     binding.gameStatusText.text = getString(R.string.get_ready)
                 }
             }
+        }
+    }
+
+    private fun choicesUi(show: Boolean) {
+        if (show) {
+            binding.choicesLayout.visibility = View.VISIBLE
+            binding.gameStatusText.visibility = View.GONE
+        } else {
+            binding.choicesLayout.visibility = View.GONE
+            binding.gameStatusText.visibility = View.VISIBLE
+        }
+    }
+
+    private fun progressCircle(show: Boolean) {
+        if (show) {
+            binding.waitingCircle.visibility = View.VISIBLE
+        } else {
+            binding.waitingCircle.visibility = View.GONE
         }
     }
 
@@ -134,7 +160,7 @@ class GameFragment : Fragment(), Observer {
         keepScreenOn(false)
     }
 
-    fun keepScreenOn(keep: Boolean) {
+    private fun keepScreenOn(keep: Boolean) {
         if (keep) {
             requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         } else {

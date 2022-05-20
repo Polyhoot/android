@@ -77,7 +77,13 @@ class JoinGameFragment : Fragment(), Observer {
                 GameEventType.STATUS -> {
                     requireActivity().supportFragmentManager.commit {
                         setReorderingAllowed(true)
-                        replace<GameFragment>(R.id.game_fragment_container_view, args = bundleOf("GAME_UID" to gameId, "NAME" to name))
+                        replace<GameFragment>(
+                            R.id.game_fragment_container_view,
+                            args = bundleOf(
+                                "GAME_UID" to gameId,
+                                "NAME" to name
+                            )
+                        )
                     }
                 }
                 GameEventType.NAME_TAKEN -> {

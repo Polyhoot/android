@@ -7,6 +7,8 @@ import androidx.core.view.WindowCompat
 import net.ciphen.polyhoot.R
 import net.ciphen.polyhoot.databinding.ActivityMainBinding
 
+private const val MAX_GAME_ID_LENGTH = 6
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
@@ -18,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.gameUidEnter.setOnClickListener {
-            if (binding.gameUidField.text!!.length != 6) {
+            if (binding.gameUidField.text!!.length != MAX_GAME_ID_LENGTH) {
                 binding.gameUidFieldLayout.error = getString(R.string.game_id_error_text)
                 binding.gameUidFieldLayout.isErrorEnabled = true
             } else {

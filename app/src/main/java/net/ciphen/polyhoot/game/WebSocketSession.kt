@@ -7,7 +7,13 @@ import kotlinx.serialization.json.jsonPrimitive
 import net.ciphen.polyhoot.game.event.GameEventType
 import net.ciphen.polyhoot.patterns.observer.Observable
 import net.ciphen.polyhoot.patterns.observer.Observer
-import okhttp3.*
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import okhttp3.WebSocket
+import okhttp3.WebSocketListener
+
+private const val WEBSOCKET_CLOSE_CODE = 1000
 
 class WebSocketSession : Observable, WebSocketListener() {
     override val observers: MutableList<Observer> = mutableListOf()
@@ -62,6 +68,6 @@ class WebSocketSession : Observable, WebSocketListener() {
     }
 
     fun endSession() {
-        webSocket.close(1000, "GameActivity died.")
+        webSocket.close(WEBSOCKET_CLOSE_CODE, "GameActivity died.")
     }
 }

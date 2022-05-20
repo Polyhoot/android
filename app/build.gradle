@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'io.gitlab.arturbosch.detekt'
 }
 
 android {
@@ -34,6 +35,13 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+}
+
+tasks.named("detekt").configure {
+    reports {
+        html.required.set(true)
+        html.outputLocation.set(file("build/reports/detekt.html"))
     }
 }
 
