@@ -33,4 +33,7 @@
     <string name="name_field_layout_hint">Name</string>
     <string name="game_id_field_hint">Game ID</string>
     <string name="name_field_empty">Can\'t be empty!</string>
+    <string name="score_text">Score: %1$d</string>
+    <string name="answer_right">Good job! Keep it up!</string>
+    <string name="answer_wrong">Do better next time!</string>
 </resources>

@@ -202,6 +202,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/score_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/name_text"
+            app:layout_constraintEnd_toStartOf="@id/game_id_text" />
+
+        <TextView
             android:id="@+id/game_id_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

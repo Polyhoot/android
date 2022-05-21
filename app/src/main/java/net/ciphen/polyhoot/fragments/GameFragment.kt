@@ -49,6 +49,7 @@ class GameFragment : Fragment(), Observer {
     private val webSocketSession = WebSocketSession.getInstance()
     private var answerBindings: MutableList<MaterialCardView> = mutableListOf()
     private var answered: Boolean = false
+    private var score = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +63,7 @@ class GameFragment : Fragment(), Observer {
         keepScreenOn(true)
         binding.nameText.text = name
         binding.gameIdText.text = getString(R.string.game_id, gameId)
+        updateScore()
         answerBindings.add(binding.answer1)
         answerBindings.add(binding.answer2)
         answerBindings.add(binding.answer3)
@@ -128,7 +130,18 @@ class GameFragment : Fragment(), Observer {
                 }
                 GameEventType.TIME_UP -> {
                     answered = true
-                    binding.gameStatusText.text = getString(R.string.time_up_text)
+                    val newScore = Json.parseToJsonElement(args)
+                        .jsonObject["score"]
+                        ?.jsonPrimitive
+                        ?.int
+                        ?: 0
+                    if (score != newScore) {
+                        score = newScore
+                        updateScore()
+                        binding.gameStatusText.text = getString(R.string.answer_right)
+                    } else {
+                        binding.gameStatusText.text = getString(R.string.answer_wrong)
+                    }
                     choicesUi(false)
                     progressCircle(true)
                 }
@@ -151,6 +164,10 @@ class GameFragment : Fragment(), Observer {
                 }
             }
         }
+    }
+
+    private fun updateScore() {
+        binding.scoreText.text = getString(R.string.score_text, score)
     }
 
     private fun choicesUi(show: Boolean) {

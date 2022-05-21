@@ -74,7 +74,7 @@ class WebSocketSession : Observable, WebSocketListener() {
             "FORCE_STOP" -> { notifyObservers(Pair(GameEventType.FORCE_STOP, null)) }
             "GET_READY" -> { notifyObservers(Pair(GameEventType.GET_READY, null))}
             "END" -> { notifyObservers(Pair(GameEventType.END, null)) }
-            "TIME_UP" -> { notifyObservers(Pair(GameEventType.TIME_UP, null))}
+            "TIME_UP" -> { notifyObservers(Pair(GameEventType.TIME_UP, text))}
             else -> notifyObservers(Pair(GameEventType.DEBUG_MESSAGE, text))
         }
     }
