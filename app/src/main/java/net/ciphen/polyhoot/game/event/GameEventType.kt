@@ -29,5 +29,6 @@ enum class GameEventType {
     STATUS,
     NAME_TAKEN,
     FORCE_STOP,
-    END
+    END,
+    NO_SUCH_GAME
 }

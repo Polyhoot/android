@@ -25,6 +25,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import com.google.android.material.snackbar.Snackbar
 import net.ciphen.polyhoot.R
 import net.ciphen.polyhoot.databinding.FragmentJoinGameBinding
 import net.ciphen.polyhoot.game.WebSocketSession
@@ -32,6 +33,8 @@ import net.ciphen.polyhoot.game.event.GameEventType
 import net.ciphen.polyhoot.patterns.observer.Observable
 import net.ciphen.polyhoot.patterns.observer.Observer
 import kotlin.properties.Delegates
+
+private const val NO_SUCH_GAME_SNACKBAR_DURATION = 5000
 
 class JoinGameFragment : Fragment(), Observer {
     private var _binding: FragmentJoinGameBinding? = null
@@ -106,6 +109,18 @@ class JoinGameFragment : Fragment(), Observer {
                             )
                         )
                     }
+                }
+                GameEventType.NO_SUCH_GAME -> {
+                    binding.gameJoin.visibility = View.VISIBLE
+                    binding.nameFieldLayout.visibility = View.VISIBLE
+                    binding.nameFieldLayout.isErrorEnabled = true
+                    binding.nameFieldLayout.error = "Game doesn't exist"
+                    binding.statusText.text = getString(R.string.status, "NO_SUCH_GAME")
+                    Snackbar.make(
+                        binding.root,
+                        "Game with ID $gameId doesn't exist!",
+                        NO_SUCH_GAME_SNACKBAR_DURATION)
+                        .show()
                 }
                 GameEventType.NAME_TAKEN -> {
                     binding.gameJoin.visibility = View.VISIBLE
