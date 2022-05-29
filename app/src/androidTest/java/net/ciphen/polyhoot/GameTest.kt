@@ -256,7 +256,7 @@ class GameTest : Observer {
         InstrumentationRegistry.getInstrumentation().context.getString(resId)
 
     override fun update(o: Observable, arg: Any?) {
-        Thread.sleep(500)
+        Thread.sleep(2000)
         when (arg as TestStage) {
             TestStage.GAME_CREATE -> gameId = mockHost.gameId!!
             TestStage.WAIT_FOR_PLAYER -> joinGame()
