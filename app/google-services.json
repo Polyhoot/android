@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "356711695787",
+    "project_id": "polyhoot-598be",
+    "storage_bucket": "polyhoot-598be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356711695787:android:2c3b9dd0478f0ccdfbfeee",
+        "android_client_info": {
+          "package_name": "net.ciphen.polyhoot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356711695787-rjakv852i14nqd79ujphffrl0e307ev6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyHpQSt8L7YJThdP-sFaLXvPaJ33K6dvI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356711695787-rjakv852i14nqd79ujphffrl0e307ev6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
