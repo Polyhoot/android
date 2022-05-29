@@ -4,6 +4,10 @@
 
 _A light-weight Android client for Polyhoot game. Written in **Kotlin** and made with **Material Design 3** and Android 12 **Dynamic Colors support**._
 
+## _Download latest release_
+Polyhoot! is being distributed through **Firebase App Distribution**.
+You can use this link to get releases: [**Firebase App Distribution Invitation**](https://appdistribution.firebase.dev/i/2817cf40c50c4feb)
+
 ## _Screenshots_
 
 <img src="https://i.imgur.com/P0IIMis.png" width="200"> <img src="https://i.imgur.com/81TD4Ce.png" width="200">
