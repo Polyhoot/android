@@ -198,7 +198,7 @@ class GameTest : Observer {
                 isDisplayed()
             )
         )
-        statusTextView.check(matches(withText("Answer sent! Waiting for others…")))
+        statusTextView.check(matches(withText("Waiting for others…")))
         Log.i(TAG, "Answer received test passed [4/7]")
     }
 
@@ -230,6 +230,12 @@ class GameTest : Observer {
                 isDisplayed()
             )
         ).check(matches(withText("Game has ended.")))
+        onView(
+            allOf(
+                withId(R.id.go_back_button),
+                isDisplayed()
+            )
+        ).perform(click())
         Log.i(TAG, "Game end test passed [7/7]")
         testCompleted = true
     }
