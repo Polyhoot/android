@@ -74,6 +74,7 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLines="1"
+            android:maxLength="15"
             android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
