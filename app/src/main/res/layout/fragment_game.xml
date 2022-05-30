@@ -20,12 +20,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.GameFragment">
+    tools:context=".fragments.GameFragment"
+    android:animateLayoutChanges="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/game_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="false"
         android:paddingBottom="100dp">
 
         <TextView
@@ -58,6 +60,7 @@
             android:id="@+id/choices_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
             android:visibility="gone">
 
             <TextView

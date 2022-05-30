@@ -21,7 +21,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.MainActivity"
+    android:animateLayoutChanges="true">
     <ImageView
         android:id="@+id/polytech_logo"
         android:layout_width="wrap_content"
