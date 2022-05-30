@@ -27,7 +27,7 @@ import net.ciphen.polyhoot.databinding.GameActivityBinding
 import net.ciphen.polyhoot.fragments.JoinGameFragment
 import net.ciphen.polyhoot.game.WebSocketSession
 
-class GameActivity: AppCompatActivity() {
+class GameActivity : AppCompatActivity() {
     private lateinit var binding: GameActivityBinding
     private lateinit var webSocketSession: WebSocketSession
 

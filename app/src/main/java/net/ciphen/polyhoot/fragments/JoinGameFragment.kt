@@ -94,10 +94,14 @@ class JoinGameFragment : Fragment(), Observer {
                 args = pair.second as String
             }
             when (event) {
-                GameEventType.CONNECTED -> binding.statusText.text = getString(R.string.status, "CONNECTED")
-                GameEventType.CONNECTING -> binding.statusText.text = getString(R.string.status, "CONNECTING...")
-                GameEventType.DEBUG_MESSAGE -> binding.statusText.text = getString(R.string.status, args)
-                GameEventType.FAIL -> binding.statusText.text = getString(R.string.status,"FAIL! $args")
+                GameEventType.CONNECTED -> binding.statusText.text =
+                    getString(R.string.status, "CONNECTED")
+                GameEventType.CONNECTING -> binding.statusText.text =
+                    getString(R.string.status, "CONNECTING...")
+                GameEventType.DEBUG_MESSAGE -> binding.statusText.text =
+                    getString(R.string.status, args)
+                GameEventType.FAIL -> binding.statusText.text =
+                    getString(R.string.status, "FAIL! $args")
                 GameEventType.STATUS -> {
                     requireActivity().supportFragmentManager.commit {
                         setReorderingAllowed(true)
@@ -119,7 +123,8 @@ class JoinGameFragment : Fragment(), Observer {
                     Snackbar.make(
                         binding.root,
                         "Game with ID $gameId doesn't exist!",
-                        NO_SUCH_GAME_SNACKBAR_DURATION)
+                        NO_SUCH_GAME_SNACKBAR_DURATION
+                    )
                         .show()
                 }
                 GameEventType.NAME_TAKEN -> {

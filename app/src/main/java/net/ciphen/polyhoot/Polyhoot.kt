@@ -19,7 +19,7 @@ package net.ciphen.polyhoot
 import com.google.android.material.color.DynamicColors
 import com.google.firebase.FirebaseApp
 
-class Polyhoot: android.app.Application() {
+class Polyhoot : android.app.Application() {
     override fun onCreate() {
         super.onCreate()
         FirebaseApp.initializeApp(this)

@@ -23,11 +23,7 @@ import kotlinx.serialization.json.jsonPrimitive
 import net.ciphen.polyhoot.game.event.GameEventType
 import net.ciphen.polyhoot.patterns.observer.Observable
 import net.ciphen.polyhoot.patterns.observer.Observer
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
-import okhttp3.WebSocket
-import okhttp3.WebSocketListener
+import okhttp3.*
 
 private const val WEBSOCKET_CLOSE_CODE = 1000
 
@@ -67,14 +63,19 @@ class WebSocketSession : Observable, WebSocketListener() {
         val json = Json.parseToJsonElement(text)
         Log.i("WebSocketSession", text)
         when (json.jsonObject["event"]!!.jsonPrimitive.content) {
-            "CONNECT" -> notifyObservers(Pair(GameEventType.STATUS, json.jsonObject["status"].toString()))
-            "NAME_TAKEN" -> { notifyObservers(Pair(GameEventType.NAME_TAKEN, null)) }
-            "START_GAME" -> { notifyObservers(Pair(GameEventType.START_GAME, null))}
-            "QUESTION" -> { notifyObservers(Pair(GameEventType.QUESTION, text))}
-            "FORCE_STOP" -> { notifyObservers(Pair(GameEventType.FORCE_STOP, null)) }
-            "GET_READY" -> { notifyObservers(Pair(GameEventType.GET_READY, null))}
-            "END" -> { notifyObservers(Pair(GameEventType.END, null)) }
-            "TIME_UP" -> { notifyObservers(Pair(GameEventType.TIME_UP, text))}
+            "CONNECT" -> notifyObservers(
+                Pair(
+                    GameEventType.STATUS,
+                    json.jsonObject["status"].toString()
+                )
+            )
+            "NAME_TAKEN" -> notifyObservers(Pair(GameEventType.NAME_TAKEN, null))
+            "START_GAME" -> notifyObservers(Pair(GameEventType.START_GAME, null))
+            "QUESTION" -> notifyObservers(Pair(GameEventType.QUESTION, text))
+            "FORCE_STOP" -> notifyObservers(Pair(GameEventType.FORCE_STOP, null))
+            "GET_READY" -> notifyObservers(Pair(GameEventType.GET_READY, null))
+            "END" -> notifyObservers(Pair(GameEventType.END, null))
+            "TIME_UP" -> notifyObservers(Pair(GameEventType.TIME_UP, text))
             "NO_SUCH_GAME" -> notifyObservers(Pair(GameEventType.NO_SUCH_GAME, null))
             else -> notifyObservers(Pair(GameEventType.DEBUG_MESSAGE, text))
         }
