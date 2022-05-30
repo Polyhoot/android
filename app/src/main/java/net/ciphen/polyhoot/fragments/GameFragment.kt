@@ -58,6 +58,9 @@ class GameFragment : Fragment(), Observer {
         keepScreenOn(true)
         binding.nameText.text = name
         binding.gameIdText.text = getString(R.string.game_id, gameId)
+        binding.goBackButton.setOnClickListener {
+            requireActivity().finish()
+        }
         updateScore()
         answerBindings.add(binding.answer1)
         answerBindings.add(binding.answer2)
@@ -93,6 +96,7 @@ class GameFragment : Fragment(), Observer {
             when (event) {
                 GameEventType.START_GAME -> {
                     binding.gameStatusText.text = getString(R.string.starting_game)
+                    progressCircle(true)
                 }
                 GameEventType.QUESTION -> {
                     answered = false
@@ -145,12 +149,14 @@ class GameFragment : Fragment(), Observer {
                     choicesUi(false)
                     progressCircle(false)
                     binding.gameStatusText.text = getString(R.string.force_stop)
+                    binding.goBackButton.visibility = View.VISIBLE
                 }
                 GameEventType.END -> {
                     keepScreenOn(false)
                     choicesUi(false)
                     progressCircle(false)
                     binding.gameStatusText.text = getString(R.string.game_ended)
+                    binding.goBackButton.visibility = View.VISIBLE
                 }
                 GameEventType.GET_READY -> {
                     choicesUi(false)

@@ -36,5 +36,6 @@
     <string name="score_text">Score: %1$d</string>
     <string name="answer_right">Good job! Keep it up!</string>
     <string name="answer_wrong">Do better next time!</string>
+    <string name="main_menu_button_text">Main menu</string>
     <string name="see_your_name">See your name on screen?</string>
 </resources>

@@ -37,11 +37,27 @@
             android:text="@string/see_your_name"
             android:textSize="24sp"
             android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@id/waiting_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/go_back_button"
+            style="@style/Widget.Material3.ExtendedFloatingActionButton.Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_menu_button_text"
+            android:stateListAnimator="@null"
+            android:textSize="20sp"
+            android:elevation="0dp"
+            android:visibility="gone"
+            app:icon="@drawable/ic_round_arrow_back"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/game_status_text" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/waiting_circle"
@@ -49,9 +65,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminate="true"
-            app:indicatorSize="64dp"
             android:paddingTop="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            app:indicatorSize="64dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/game_status_text" />
@@ -64,19 +80,18 @@
             android:visibility="gone">
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/question_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:paddingTop="12dp"
-                android:textSize="32sp"
                 android:gravity="center"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:paddingStart="12dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="12dp"
+                android:textSize="32sp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/answer_1"
