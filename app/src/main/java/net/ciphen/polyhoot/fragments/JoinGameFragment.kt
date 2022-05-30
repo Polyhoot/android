@@ -63,9 +63,6 @@ class JoinGameFragment : Fragment(), Observer {
                     "{\"event\":\"connect\",\"name\":\"${binding.nameField.text}\",\"gameId\":$gameId}"
                 )
                 name = binding.nameField.text.toString()
-                binding.gameJoin.visibility = View.GONE
-                binding.nameFieldLayout.visibility = View.GONE
-                binding.nameText.visibility = View.GONE
             }
         }
     }
