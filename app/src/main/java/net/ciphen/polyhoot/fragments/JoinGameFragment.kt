@@ -104,6 +104,12 @@ class JoinGameFragment : Fragment(), Observer {
                     getString(R.string.status, "FAIL! $args")
                 GameEventType.STATUS -> {
                     requireActivity().supportFragmentManager.commit {
+                        setCustomAnimations(
+                            R.anim.slide_in,
+                            R.anim.fade_out,
+                            R.anim.fade_in,
+                            R.anim.slide_out
+                        )
                         setReorderingAllowed(true)
                         replace<GameFragment>(
                             R.id.game_fragment_container_view,
