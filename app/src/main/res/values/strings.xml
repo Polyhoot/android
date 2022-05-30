@@ -20,7 +20,7 @@
     <string name="game_uid_text">Enter game ID</string>
     <string name="starting_game">Starting game!</string>
     <string name="join_game">Join game</string>
-    <string name="answer_sent">Answer sent! Waiting for others…</string>
+    <string name="answer_sent">Waiting for others…</string>
     <string name="time_up_text">Looking through the answers…</string>
     <string name="force_stop">Host has disconnected.\nGame has ended forcibly.</string>
     <string name="game_ended">Game has ended.</string>
@@ -36,4 +36,5 @@
     <string name="score_text">Score: %1$d</string>
     <string name="answer_right">Good job! Keep it up!</string>
     <string name="answer_wrong">Do better next time!</string>
+    <string name="see_your_name">See your name on screen?</string>
 </resources>

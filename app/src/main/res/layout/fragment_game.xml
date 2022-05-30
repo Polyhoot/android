@@ -34,7 +34,7 @@
             android:id="@+id/game_status_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Waiting for game to start..."
+            android:text="@string/see_your_name"
             android:textSize="24sp"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@id/waiting_circle"
