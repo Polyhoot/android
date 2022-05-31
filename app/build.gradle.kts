@@ -33,7 +33,7 @@ android {
 
     defaultConfig {
         applicationId = "net.ciphen.polyhoot"
-        minSdk = 28
+        minSdk = 29
         targetSdk = 32
         versionCode = 3
         versionName = "three"

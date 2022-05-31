@@ -16,6 +16,8 @@
   -->
 
 <resources>
+    <color name="icon_foreground">@color/white</color>
+    <color name="icon_background">#FF37B34A</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="answer_1_card_background">#c7a4ff</color>
