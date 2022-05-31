@@ -35,8 +35,8 @@ android {
         applicationId = "net.ciphen.polyhoot"
         minSdk = 29
         targetSdk = 32
-        versionCode = 3
-        versionName = "three"
+        versionCode = 4
+        versionName = "four"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
