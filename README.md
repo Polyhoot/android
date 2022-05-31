@@ -32,14 +32,31 @@ These instructions will get you a copy of the project up and running on your loc
 git clone https://github.com/polyhoot/android -b master
 ```
 
+### Using your own server
+
+You can set WebSocket URL to your own server by editing `polyhoot.websocket.url` field
+in `app/gradle.properties`:
+
+```
+app/gradle.properties:
+
+/* ... */
+# Defines main entry point to polyhoot server infrastructure
+# Change this address if you want to run your own server.
+polyhoot.websocket.url=YOUR_URL_HERE
+/* ... */
+```
+
 ### _Building_
 
 Linux & macOS:
+
 ```
 ./gradlew build assembleDebug
 ```
 
 Windows:
+
 ```
 .\gradlew.bat build assembleDebug
 ```

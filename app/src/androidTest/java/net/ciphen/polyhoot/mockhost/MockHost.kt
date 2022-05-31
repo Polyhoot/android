@@ -18,6 +18,7 @@ package net.ciphen.polyhoot.mockhost
 
 import android.util.Log
 import kotlinx.serialization.json.*
+import net.ciphen.polyhoot.BuildConfig
 import net.ciphen.polyhoot.enums.TestStage
 import net.ciphen.polyhoot.patterns.observer.Observable
 import net.ciphen.polyhoot.patterns.observer.Observer
@@ -26,8 +27,8 @@ import okhttp3.Request
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 
-private const val GAME_CREATE_URL = "wss://polyhoot.ciphen.net/game/create"
-private const val GAME_HOST_URL = "wss://polyhoot.ciphen.net/game/host"
+private const val GAME_CREATE_URI = "/game/create"
+private const val GAME_HOST_URI = "/game/host"
 private const val TAG = "MockHost"
 
 class MockHost : WebSocketListener(), Observable {
@@ -40,14 +41,14 @@ class MockHost : WebSocketListener(), Observable {
 
     fun start() {
         Log.i(TAG, "Creating game...")
-        openWebSocket(GAME_CREATE_URL)
+        openWebSocket(GAME_CREATE_URI)
     }
 
     private fun waitForTestPlayer() {
         Log.i(TAG, "Closing /game/create websocket...")
         webSocket.cancel()
         Log.i(TAG, "Connecting as game host...")
-        openWebSocket(GAME_HOST_URL)
+        openWebSocket(GAME_HOST_URI)
         webSocket.send(
             JsonObject(
                 mapOf(
@@ -136,9 +137,9 @@ class MockHost : WebSocketListener(), Observable {
         notifyObservers(TestStage.GAME_END)
     }
 
-    private fun openWebSocket(url: String) {
+    private fun openWebSocket(uri: String) {
         webSocket = okHttpClient.newWebSocket(
-            Request.Builder().url(url).build(),
+            Request.Builder().url(BuildConfig.POLYHOOT_WEBSOCKET_URL + uri).build(),
             this
         )
     }

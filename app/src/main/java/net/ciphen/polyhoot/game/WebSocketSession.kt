@@ -20,12 +20,14 @@ import android.util.Log
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
+import net.ciphen.polyhoot.BuildConfig
 import net.ciphen.polyhoot.game.event.GameEventType
 import net.ciphen.polyhoot.patterns.observer.Observable
 import net.ciphen.polyhoot.patterns.observer.Observer
 import okhttp3.*
 
 private const val WEBSOCKET_CLOSE_CODE = 1000
+private const val WEBSOCKET_GAME_SESSION = "/game/session"
 
 class WebSocketSession : Observable, WebSocketListener() {
     override val observers: MutableList<Observer> = mutableListOf()
@@ -38,10 +40,11 @@ class WebSocketSession : Observable, WebSocketListener() {
         fun getInstance(): WebSocketSession = INSTANCE ?: WebSocketSession().also { INSTANCE = it }
     }
 
-    fun openWebSocket(url: String) {
+    fun openWebSocket() {
         notifyObservers(Pair(GameEventType.CONNECTING, ""))
         webSocket = okHttpClient.newWebSocket(
-            Request.Builder().url(url).build(),
+            Request.Builder().url(BuildConfig.POLYHOOT_WEBSOCKET_URL + WEBSOCKET_GAME_SESSION)
+                .build(),
             this
         )
     }

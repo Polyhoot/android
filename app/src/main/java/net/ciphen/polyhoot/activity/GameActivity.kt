@@ -36,7 +36,7 @@ class GameActivity : AppCompatActivity() {
         binding = GameActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         webSocketSession = WebSocketSession.getInstance()
-        webSocketSession.openWebSocket(getString(R.string.websocket_url))
+        webSocketSession.openWebSocket()
         Log.i("GameActivity", "Opened WebSocket.")
         supportFragmentManager.commit {
             val bundle = bundleOf(
