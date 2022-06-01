@@ -1,32 +1,39 @@
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-yellow.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Android CI](https://github.com/Polyhoot/android/actions/workflows/android.yml/badge.svg)](https://github.com/Polyhoot/android/actions/workflows/android.yml)
-# **Polyhoot Android client**
 
-_A light-weight Android client for Polyhoot game. Written in **Kotlin** and made with **Material Design 3** and Android 12 **Dynamic Colors support**._
+# **Polyhoot! Android client**
 
-## _Download latest release_
-Polyhoot! is being distributed through **Firebase App Distribution**.
-You can use this link to get releases: [**Firebase App Distribution Invitation**](https://appdistribution.firebase.dev/i/2817cf40c50c4feb)
+<img width="100" height="100" alt="Polyhoot! Logo"
+src="https://github.com/Polyhoot/.github/blob/main/logo.jpeg?raw=true" align="right">
 
-## _Screenshots_
+### A light-weight Android client for Polyhoot! Written in _Kotlin_ and made with _Material 3_ and _Dynamic Colors support_.
+
+## Download latest release
+
+Polyhoot! is being distributed through **Firebase App Distribution**. You can use this link to get
+releases: [**Firebase App Distribution
+Invitation**](https://appdistribution.firebase.dev/i/2817cf40c50c4feb)
+
+## Screenshots
 
 <img src="https://i.imgur.com/P0IIMis.png" width="200"> <img src="https://i.imgur.com/81TD4Ce.png" width="200">
 <img src="https://i.imgur.com/eJCWVSk.png" width="200">
 <img src="https://i.imgur.com/hHzFFGz.png" width="200">
 
-## _Build Artifacts_
+## Build Artifacts
 
 You can download **latest debug package** of the app from _GitHub Action Android CI workflow_ [**here**](https://github.com/Polyhoot/android/actions). Open latest successful action and download zipped APK file from the **Artifacts** section.
 
-## _Getting Started_
+## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### _Prerequisites_
+### Prerequisites
 
 * Java Development Kit 17
+* Android SDK Manager
 
-### _Cloning_
+### Cloning
 
 ```
 git clone https://github.com/polyhoot/android -b master
@@ -34,7 +41,7 @@ git clone https://github.com/polyhoot/android -b master
 
 ### Using your own server
 
-You can set WebSocket URL to your own server by editing `polyhoot.websocket.url` field
+You can set WebSocket URL to your own server by editing `polyhootWebSocketUrl` field
 in `app/gradle.properties`:
 
 ```
@@ -43,37 +50,47 @@ app/gradle.properties:
 /* ... */
 # Defines main entry point to polyhoot server infrastructure
 # Change this address if you want to run your own server.
-polyhoot.websocket.url=YOUR_URL_HERE
+polyhootWebSocketUrl=YOUR_URL_HERE
 /* ... */
 ```
 
-### _Building_
+### Setting up build environment
+
+Open `local.properties` file and define path to Android SDK using `sdk.dir=` property For example:
+`local.properties`
+
+```
+# Location of the SDK. This is only used by Gradle.
+sdk.dir=<path-to-sdk>
+```
+
+### Building
 
 Linux & macOS:
 
 ```
-./gradlew build assembleDebug
+./gradlew assembleDebug
 ```
 
 Windows:
 
 ```
-.\gradlew.bat build assembleDebug
+.\gradlew.bat assembleDebug
 ```
 
-### _Running on device_
+### Running on device
 
 Linux & macOS:
 ```
-./gradlew build installDebug
+./gradlew installDebug
 ```
 
 Windows:
 ```
-.\gradlew.bat build installDebug
+.\gradlew.bat installDebug
 ```
 
-## _Built with_
+## Built with
 
 * [Android Studio](https://developer.android.com/studio) - Official Android IDE by Google & JetBrains
 * [Gradle](https://github.com/gradle/gradle) - Build automation tool
@@ -81,6 +98,6 @@ Windows:
 * [Google Material Design 3 Components](https://m3.material.io/) - New default design language for Android 12+
 * [OkHttp](https://square.github.io/okhttp) - An HTTP client for handling WebSocket sessions
 
-## _License_
+## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
